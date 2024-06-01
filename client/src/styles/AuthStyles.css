@@ -26,7 +26,7 @@
 }
 .form-container form input{
     border: none;
-    font-family: "Playfair Display", serif;
+    font-family: "Playfair", serif;
     border-bottom: 1px solid #000;
     border-radius: 0;
 }
