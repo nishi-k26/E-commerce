@@ -11,12 +11,13 @@ const Register = () => {
     const [password,setPassword] = useState("")
     const [phone,setPhone] = useState("")
     const [address,setAddress] = useState("")
+    const [answer,setAnswer] = useState("")
     const navigate = useNavigate();
     //form function
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address});
+            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address,answer});
             if(res && res.data.success){
                 toast.success(res.data.message);
                 navigate('/login')
@@ -58,6 +59,11 @@ const Register = () => {
             <div className="mb-3">
                 <label htmlFor="exampleInputAddress" className="form-label">Address</label>
                 <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" required/>
+            </div>
+
+            <div className="mb-3">
+                <label htmlFor="exampleInputAnswer" className="form-label">What is your favourite color? (In case you forget your password)</label>
+                <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="form-control" id="exampleInputAnswer" required/>
             </div>
 
             <button type="submit" className="btn btn-primary">REGISTER</button>

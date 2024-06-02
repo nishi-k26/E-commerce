@@ -34,6 +34,7 @@
 .form-container form button {
     border: 1px solid black;
     border-radius: 0;
+    font-family: "Playfair Display", serif;
     background-color: #000;
     color: white;
     width: 250px;
@@ -42,6 +43,7 @@
 .form-container form button:hover {
     border: 1px solid black;
     background: #000000;
+    font-family: "Playfair Display", serif;
     background: -webkit-linear-gradient(
         to right,
         #434343,
