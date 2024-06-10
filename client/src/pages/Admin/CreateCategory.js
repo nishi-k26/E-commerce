@@ -34,20 +34,20 @@ const CreateCategory = () => {
   //get all categories
   const getAllCategory = async () => {
     try{
-      const {data} = await axios.get('/api/v1/category/get-category')
-      if(data.success) {
-        setCategories(data.category)
+      const {data} = await axios.get('/api/v1/category/get-category');
+      if(data?.success) {
+        setCategories(data?.category);
       }
     }
     catch(error){
-      console.log(error)
-      toast.error("Something went wrong in getting categories")
+      console.log(error);
+      toast.error("Something went wrong in getting categories");
     }
-  }
+  };
 
   useEffect (() => {
     getAllCategory();
-  })
+  },[]);
 
   //update category
   const handleUpdate = async(e) => {
