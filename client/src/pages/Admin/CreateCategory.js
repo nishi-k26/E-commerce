@@ -16,9 +16,9 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const {data} = await axios.post('/api/v1/category/create-category',{name})
+      const {data} = await axios.post('/api/v1/category/create-category',{name,});
       if(data?.success){
-        toast.success(`${name} is required`)
+        toast.success(`${name} category is created`)
         getAllCategory()
       }
       else{
@@ -29,7 +29,7 @@ const CreateCategory = () => {
       console.log(error)
       toast.error('Something went wrong in input')
     }
-  }
+  };
 
   //get all categories
   const getAllCategory = async () => {
@@ -37,6 +37,9 @@ const CreateCategory = () => {
       const {data} = await axios.get('/api/v1/category/get-category');
       if(data?.success) {
         setCategories(data?.category);
+      }
+      else{
+        toast.error('Something went wrong')
       }
     }
     catch(error){
@@ -53,20 +56,20 @@ const CreateCategory = () => {
   const handleUpdate = async(e) => {
     e.preventDefault()
     try{
-      const {data} = await axios.put(`/api/v1/category/update-category/${selected._id}`, {name:updatedName})
+      const {data} = await axios.put(`/api/v1/category/update-category/${selected._id}`, {name:updatedName});
       if(data.success){
-        toast.success(`${updatedName} is updated`)
-        setSelected(null)
-        setUpdatedName("")
-        setVisible(false)
-        getAllCategory()
+        toast.success(`${updatedName} is updated`);
+        setSelected(null);
+        setUpdatedName("");
+        setVisible(false);
+        getAllCategory();
       }
       else{
-        toast.error(data.message)
+        toast.error(data.message);
       }
     }
     catch(error){
-      toast.error('Something went wrong')
+      toast.error('Something went wrong');
     }
   }
 
@@ -108,13 +111,14 @@ const CreateCategory = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {categories?.map(c => (
+                      {categories?.map((c) => (
                         <>
                           <tr>
                           <td key={c.id}>{c.name}</td>
-                          <td><button className='btn btn-primary ms-2' onClick={() => {setVisible(true) ; setUpdatedName(c.name); setSelected(c);}}>Edit</button></td>
-                          <td><button className='btn btn-danger ms-2' onClick={() => {handleDelete(c._id)}}>Delete</button></td>
-
+                          <td>
+                            <button className='btn btn-primary ms-2' onClick={() => {setVisible(true) ; setUpdatedName(c.name); setSelected(c);}}>Edit</button>
+                            <button className='btn btn-danger ms-2' onClick={() => {handleDelete(c._id)}}>Delete</button>
+                          </td>
                           </tr>
                         </>
                       ))}
