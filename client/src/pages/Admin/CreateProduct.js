@@ -179,8 +179,6 @@ const CreateProduct = () => {
 
 export default CreateProduct;
 
-
-
 //mine
 
 // import React,{useState, useEffect} from 'react';
@@ -222,7 +220,7 @@ export default CreateProduct;
 //   useEffect (() => {
 //     getAllCategory();
 //   },[]);
-  
+
 //   //create product function
 //   const handleCreate = async(e) => {
 //     e.preventDefault();
@@ -251,7 +249,7 @@ export default CreateProduct;
 //       toast.error("Something went wrong");
 //     }
 //   };
- 
+
 //   return (
 //     <Layout title={'Dashboard - Create Product'}>
 //         <div className='container-fluid m-3 p-3'>
