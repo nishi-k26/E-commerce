@@ -1,27 +1,37 @@
 import React, { useState } from "react";
-import Layout from "./../../components/Layout/Layout";
+import Layout from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "../../styles/AuthStyles.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 
-const ForgotPassword = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
-
+  const location = useLocation();
   //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
-        { email, newPassword, answer }
+        `${import.meta.env.VITE_REACT_APP_API}/api/v1/auth/login`,
+        {
+          email,
+          password,
+        }
       );
       if (res && res.data.success) {
         toast.success(res.data.message);
-        navigate("/login");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
       }
@@ -31,10 +41,10 @@ const ForgotPassword = () => {
     }
   };
   return (
-    <Layout title="Forgot Password">
+    <Layout title="Login">
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <h4 className="title">RESET PASSWORD PAGE</h4>
+          <h4 className="title">LOGIN PAGE</h4>
 
           <div className="mb-3">
             <label htmlFor="exampleInputEmail" className="form-label">
@@ -51,27 +61,13 @@ const ForgotPassword = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="exampleInputAnswer" className="form-label">
-              Enter your favourite color
-            </label>
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputAnswer"
-              required
-            />
-          </div>
-
-          <div className="mb-3">
             <label htmlFor="exampleInputPassword" className="form-label">
-              Set New Password
+              Password
             </label>
             <input
               type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="form-control"
               id="exampleInputPassword"
               required
@@ -80,13 +76,23 @@ const ForgotPassword = () => {
 
           <div className="mb-3">
             <button type="submit" className="btn btn-primary">
-              RESET
+              LOGIN
             </button>
           </div>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              navigate("/forgot-password");
+            }}
+          >
+            FORGOT PASSWORD
+          </button>
         </form>
       </div>
     </Layout>
   );
 };
 
-export default ForgotPassword;
+export default Login;

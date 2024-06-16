@@ -33,7 +33,7 @@ function App() {
           <Route path="user/profile" element={<Profile />} />
         </Route>
 
-        <Route path="/dashboard" element={<AdminRoute />}>
+        <Route path="/dashboard/" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="admin/create-category" element={<CreateCategory />} />
           <Route path="admin/create-product" element={<CreateProduct />} />

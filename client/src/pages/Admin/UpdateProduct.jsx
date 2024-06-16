@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./../../components/Layout/Layout";
-import AdminMenu from "./../../components/Layout/AdminMenu";
+import Layout from "../../components/Layout/Layout";
+import AdminMenu from "../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
@@ -29,7 +29,6 @@ const UpdateProduct = () => {
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
-      setPrice(data.product.price);
       setPrice(data.product.price);
       setQuantity(data.product.quantity);
       setShipping(data.product.shipping);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "./../../components/Layout/Layout";
+import Layout from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "../../styles/AuthStyles.css";
@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        `${import.meta.env.VITE_REACT_APP_API}/api/v1/auth/register`,
         { name, email, password, phone, address, answer }
       );
       if (res && res.data.success) {
