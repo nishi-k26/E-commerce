@@ -36,7 +36,7 @@ const ProductDetails = () => {
     }
   };
   return (
-    <Layout>
+    <Layout title={product?.category?.name}>
       <div className="row container mt-2">
         <div className="col-md-6">
           <img

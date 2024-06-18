@@ -124,7 +124,7 @@ const Header = () => {
               )}
               <li className="nav-item">
                 <Badge count={cart?.length} showZero>
-                  <NavLink to="/cart" className="nav-link" href="#">
+                  <NavLink to="/cart" className="nav-link text-4xl" href="#">
                     Cart
                   </NavLink>
                 </Badge>
