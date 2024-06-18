@@ -32,8 +32,7 @@ const UpdateProduct = () => {
       setPrice(data.product.price);
       setQuantity(data.product.quantity);
       setShipping(data.product.shipping);
-      setCategory(data.product.category._id);
-      console.log(category);
+      setCategory(data.product.category);
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +41,7 @@ const UpdateProduct = () => {
     getSingleProduct();
     //eslint-disable-next-line
   }, []);
+
   //get all category
   const getAllCategory = async () => {
     try {
@@ -53,7 +53,7 @@ const UpdateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting catgeory");
     }
   };
 
@@ -73,7 +73,7 @@ const UpdateProduct = () => {
       photo && productData.append("photo", photo);
       productData.append("category", category);
       const { data } = axios.put(
-        `/api/v1/product/update-product/${id}`,
+        `${import.meta.env.VITE_REACT_APP_API}/api/v1/product/update-product/${id}`,
         productData
       );
       if (data?.success) {
@@ -96,7 +96,7 @@ const UpdateProduct = () => {
       const { data } = await axios.delete(
         `${import.meta.env.VITE_REACT_APP_API}/api/v1/product/delete-product/${id}`
       );
-      toast.success("Product DEleted Succfully");
+      toast.success("Product Deleted Succfully");
       navigate("/dashboard/admin/products");
     } catch (error) {
       console.log(error);
@@ -122,7 +122,7 @@ const UpdateProduct = () => {
                 onChange={(value) => {
                   setCategory(value);
                 }}
-                value={category}
+                value={category._id}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c._id}>

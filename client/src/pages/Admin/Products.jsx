@@ -24,7 +24,7 @@ const Products = () => {
     getAllProducts();
   }, []);
   return (
-    <Layout>
+    <Layout title="Dashboard - Products">
       <div className="row">
         <div className="col-md-3">
           <AdminMenu />
