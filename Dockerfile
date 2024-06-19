@@ -40,8 +40,8 @@ RUN mkdir -p /app/client/build
 COPY --from=build /app/client/dist /app/client/build
 
 # Expose port 80 for the web server and port 9000 for the API server
-EXPOSE 4000
-EXPOSE 5000
+EXPOSE 6000
+EXPOSE 5346
 
 # Start the server and serve the static files
 CMD ["sh", "-c", "serve -s /app/client/build -l 4000 & node server.js"]
